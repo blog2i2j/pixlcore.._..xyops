@@ -1,5 +1,16 @@
 # xyOps Changelog
 
+## Version v1.0.19
+
+> March 6, 2026
+
+- [`f9a047b`](https://github.com/pixlcore/xyops/commit/f9a047b92e2b2c1deb532b2f52e48d5af781350b): Version 1.0.19
+- [`46a5df2`](https://github.com/pixlcore/xyops/commit/46a5df231e19ac275374be38ec72be14f95342d4): Plugins: Disallow Marketplace Plugins from setting their own UID/GID.
+- [`7845974`](https://github.com/pixlcore/xyops/commit/7845974aba665708efe9d4039a47d71c837f8be9): Feature: Add `default_plugin_credentials` config option, which will set the UID/GID of plugins if not otherwise set.
+- [`461997e`](https://github.com/pixlcore/xyops/commit/461997e0ef9789a270acf79e4a6388e90e173243): Active Jobs Tables UI: Show "Elapsed Time" column for wider screens.  Affects Dashboard, Server and Group Views.
+- [`1405efa`](https://github.com/pixlcore/xyops/commit/1405efaf6cc92d6bc9372b97c6310e391ec2d97c): Group Server List UI: Fix responsive table columns (add missing arch and xysat ver).
+- [`edc56ed`](https://github.com/pixlcore/xyops/commit/edc56ed200a498b0a400e17a5f6508dde1beed4e): Search UI: Fix collapsing buttons on tablet/mobile.
+
 ## Version v1.0.18
 
 > March 5, 2026
