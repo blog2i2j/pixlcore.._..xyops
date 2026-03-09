@@ -675,7 +675,7 @@ Page.System = class System extends Page.PageUtils {
 				id: 'fe_sys_sat_targets',
 				options: [].concat(
 					this.buildOptGroup(app.groups, config.ui.menu_bits.wf_targets_groups, 'server-network'),
-					this.buildServerOptGroup(config.ui.menu_bits.wf_targets_servers, 'router-network')
+					this.buildServerOptGroup(config.ui.menu_bits.wf_targets_servers, 'router-network', true)
 				),
 				values: [],
 				'data-hold': 1,
@@ -756,7 +756,11 @@ Page.System = class System extends Page.PageUtils {
 		
 		// targets
 		var masters = sort_by( Object.values(app.masters), 'id' ).filter( function(host) { return !!host.online; } ).map( function(host) { 
-			return { id: host.id, title: host.id, icon: host.master ? 'database' : 'database-outline' }; 
+			return { 
+				id: host.id, 
+				title: host.id + ' (v' + host.version + ')', 
+				icon: host.master ? 'database' : 'database-outline' 
+			}; 
 		} );
 		
 		html += this.getFormRow({

@@ -1954,7 +1954,7 @@ Page.Base = class Base extends Page {
 		);
 	}
 	
-	buildServerOptGroup(title, default_icon) {
+	buildServerOptGroup(title, default_icon, inc_versions) {
 		// build menu group specifically for servers
 		// sorted properly, with labels and icons
 		var servers = Object.values(app.servers).sort( 
@@ -1963,7 +1963,9 @@ Page.Base = class Base extends Page {
 			} 
 		).map( 
 			function(server) {
-				return merge_objects( server, { title: server.title || server.hostname } );
+				var title = server.title || server.hostname;
+				if (inc_versions) title += ' (v' + server.info.satellite + ')';
+				return merge_objects( server, { title } );
 			}
 		);
 		
