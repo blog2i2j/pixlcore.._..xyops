@@ -540,6 +540,7 @@ Page.Buckets = class Buckets extends Page.PageUtils {
 		if (!this.bucket.id) return; // sanity
 		
 		ZeroUpload.chooseFiles({}, {
+			csrf_token: app.csrf_token || '',
 			bucket: this.bucket.id
 		});
 	}
@@ -548,6 +549,7 @@ Page.Buckets = class Buckets extends Page.PageUtils {
 		// intercept drag-drop event and upload files to bucket
 		if (this.args.sub == 'edit') {
 			ZeroUpload.upload( files, {}, {
+				csrf_token: app.csrf_token || '',
 				bucket: this.bucket.id
 			} );
 		}

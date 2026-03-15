@@ -29,5 +29,7 @@
 	"Storage.SQLite.base_dir": "test/data",
 	
 	"WebServer.http_port": 6622,
-	"WebServer.https_port": 6623
+	"WebServer.https_port": 6623,
+	
+	"User.use_csrf": false
 }

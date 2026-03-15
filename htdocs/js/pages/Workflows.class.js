@@ -1421,7 +1421,7 @@ Page.Workflows = class Workflows extends Page.Events {
 		
 		Dialog.onDragDrop = function(files) {
 			// files dropped on dialog
-			ZeroUpload.upload( files, {}, {} );
+			ZeroUpload.upload( files, {}, app.csrf_token ? { csrf_token: app.csrf_token } : {} );
 		};
 		
 		Dialog.onHide = function() {

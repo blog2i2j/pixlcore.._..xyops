@@ -1314,6 +1314,7 @@ Page.Tickets = class Tickets extends Page.PageUtils {
 		if (this.editor) return app.doError("Please close the current text editor before attaching files.");
 		
 		ZeroUpload.chooseFiles({}, {
+			csrf_token: app.csrf_token || '',
 			ticket: this.ticket.id,
 			save: true
 		});
@@ -2467,6 +2468,7 @@ Page.Tickets = class Tickets extends Page.PageUtils {
 		// intercept drag-drop event and upload files to ticket
 		if (this.args.sub == 'view') {
 			ZeroUpload.upload( files, {}, {
+				csrf_token: app.csrf_token || '',
 				ticket: this.ticket.id || 'new',
 				save: this.editor ? false : true
 			} );
@@ -2478,6 +2480,7 @@ Page.Tickets = class Tickets extends Page.PageUtils {
 		if (!this.editor) return; // sanity
 		
 		ZeroUpload.chooseFiles({}, {
+			csrf_token: app.csrf_token || '',
 			ticket: this.ticket.id || 'new'
 		});
 	}

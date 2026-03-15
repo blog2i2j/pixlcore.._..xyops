@@ -332,6 +332,7 @@ Page.Users = class Users extends Page.PageUtils {
 	upload_avatar() {
 		// upload profile pic using ZeroUpload
 		ZeroUpload.chooseFiles({}, {
+			csrf_token: app.csrf_token || '',
 			username: this.user.username
 		});
 	}

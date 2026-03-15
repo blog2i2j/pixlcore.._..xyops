@@ -484,6 +484,7 @@
 		"free_accounts": false,
 		"sort_global_users": false,
 		"use_bcrypt": true,
+		"use_csrf": true,
 		"mail_logger": true,
 		"valid_username_match": "^[\\w\\-\\.]+$",
 		"block_username_match": "^(self|system|abuse|admin|administrator|localhost|127\\.0\\.0\\.1|nobody|noreply|root|support|sysadmin|webmaster|www|god|staff|null|0|constructor|__defineGetter__|__defineSetter__|hasOwnProperty|__lookupGetter__|__lookupSetter__|isPrototypeOf|propertyIsEnumerable|toString|valueOf|__proto__|toLocaleString)$",

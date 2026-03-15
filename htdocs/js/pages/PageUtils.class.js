@@ -5410,7 +5410,7 @@ Page.PageUtils = class PageUtils extends Page.Base {
 		
 		Dialog.onDragDrop = function(files) {
 			// files dropped on dialog
-			ZeroUpload.upload( files, {}, {} );
+			ZeroUpload.upload( files, {}, app.csrf_token ? { csrf_token: app.csrf_token } : {} );
 		};
 		
 		Dialog.onHide = function() {
@@ -5499,7 +5499,7 @@ Page.PageUtils = class PageUtils extends Page.Base {
 	
 	uploadDialogFiles() {
 		// upload files using ZeroUpload (for progress, etc.)
-		ZeroUpload.chooseFiles({}, {});
+		ZeroUpload.chooseFiles( {}, app.csrf_token ? { csrf_token: app.csrf_token } : {} );
 	}
 	
 	addPageDescription(page_id) {
