@@ -1140,8 +1140,8 @@ app.extend({
 			type: 'channel', 
 			icon: channel.icon || 'bullhorn-outline', 
 			msg: html,
-			lifetime: 10, 
-			loc: args.loc || '' 
+			lifetime: 0, 
+			// loc: args.loc || '' 
 		});
 		
 		if (args.sound) this.playSound(args.sound);
