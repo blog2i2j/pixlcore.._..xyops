@@ -1167,6 +1167,10 @@ div.td_big {
 	margin-top: 2px;
 }
 
+.grid_row.disabled .checkbox_container label:before {
+	border-color: var(--body-text-color) !important;
+}
+
 .wrap {
 	white-space: normal;
 }
