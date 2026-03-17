@@ -41,10 +41,38 @@ docker run --detach --init --restart unless-stopped -v xy-data:/opt/xyops/data -
 
 Then open http://localhost:5522 in your browser, and use username `admin` and password `admin`.
 
-## Coming Soon
+## Pricing
 
-- For production installs, we highly recommend our managed **[xyOps Cloud](https://xyops.io/pricing)** service (coming soon).
-- For large enterprises, including on-prem air-gapped installs, sign up for our **[Enterprise Plan](https://xyops.io/pricing)** (coming soon).
+### Free Tier
+
+For individuals looking to self-host xyOps:
+
+- All app features
+- Community support
+- Open source forever
+
+If you use xyOps and love it, consider [becoming a sponsor](https://github.com/sponsors/pixlcore) here on GitHub.
+
+### Professional Tier
+
+For production installs, we highly recommend our **[Professional Plan](https://xyops.io/pricing)**, which includes:
+
+- All app features
+- Professional support
+- Private ticketing system
+- 24 hour turnaround on tickets
+
+### Enterprise Tier
+
+For larger enterprises, sign up for our **[Enterprise Plan](https://xyops.io/pricing)**, which includes:
+
+- All app features
+- Enterprise support
+- SSO setup and support
+- Air-gapped installation support
+- Private ticketing system
+- 1 hour turnaround on tickets
+- Live chat with our team
 
 # Documentation
 
