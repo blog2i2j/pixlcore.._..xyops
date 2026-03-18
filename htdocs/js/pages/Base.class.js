@@ -44,7 +44,7 @@ Page.Base = class Base extends Page {
 		
 		var html = '<span class="nowrap" data-private>';
 		var icon = '<i class="mdi mdi-database"></i>';
-		html += icon + item.id;
+		html += icon + app.formatHostname(item.id);
 		html += '</span>';
 		
 		return html;
