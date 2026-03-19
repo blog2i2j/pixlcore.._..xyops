@@ -1,5 +1,12 @@
 # xyOps Changelog
 
+## Version v1.0.38
+
+> March 19, 2026
+
+- [`5347452`](https://github.com/pixlcore/xyops/commit/5347452a4376a98a794209fd38e3a5d1cbb15d0e): Version 1.0.38
+- [`f926446`](https://github.com/pixlcore/xyops/commit/f926446d56e5c54a6268428fa2eac8f97b35ce8d): Server Monitor Alerts: Use correct server label and stripped hostname in notification text.
+
 ## Version v1.0.37
 
 > March 19, 2026
