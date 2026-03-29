@@ -298,17 +298,34 @@ Page.Config = class Config extends Page.PageUtils {
 		// save current changes
 		var self = this;
 		var overrides = {};
+		var err = null;
+		app.clearError();
 		
 		this.rows.forEach( function(row) {
+			if (err) return;
+			
 			switch (row.Type || row.type) {
 				case 'string':
 				case 'Menu':
 					var value = $('#' + row.elem_id).val();
+					if (!value.length) {
+						err = true;
+						return app.badField('#' + row.elem_id, row.Title + ": Value cannot be empty.");
+					}
 					if (value != row.value) overrides[row.path] = value;
 				break;
 				
 				case 'number':
-					var value = parseFloat( $('#' + row.elem_id).val() );
+					var value = $('#' + row.elem_id).val();
+					if (!value.length) {
+						err = true;
+						return app.badField('#' + row.elem_id, row.Title + ": Value cannot be empty.");
+					}
+					var value = parseFloat( value );
+					if (isNaN(value)) {
+						err = true;
+						return app.badField('#' + row.elem_id, row.Title + ": Value must be a number.");
+					}
 					if (value != row.value) overrides[row.path] = value;
 				break;
 				
@@ -325,6 +342,8 @@ Page.Config = class Config extends Page.PageUtils {
 				break;
 			} // switch row.type
 		} );
+		
+		if (err) return;
 		
 		Dialog.showProgress( 1.0, "Saving Configuration..." );
 		app.api.post( 'app/admin_update_config', overrides, function(resp) {
