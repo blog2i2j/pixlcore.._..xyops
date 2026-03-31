@@ -5803,7 +5803,7 @@ Notes:
 GET /api/app/get_satellite_releases/v1
 ```
 
-Fetch the list of official xySat release tags from the origin configured in [satellite](config.md#satellite) (usually GitHub).  Requires a valid user session or API Key with the [add_servers](privileges.md#add_servers) privilege.
+Fetch the list of official xySat release tags from the origin configured in [satellite](config.md#satellite) (usually GitHub).  Requires a valid user session or API Key.
 
 No input parameters.
 
