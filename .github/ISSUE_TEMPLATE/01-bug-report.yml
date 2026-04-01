@@ -66,9 +66,8 @@ body:
       description: What kind of storage setup are you running?
       options:
         - Default (SQLite + Filesystem)
-        - NFS Filesystem
         - AWS S3
-        - S3 Compatible
+        - S3 Compatible (MinIO / RustFS)
         - Other
       default: 0
     validations:

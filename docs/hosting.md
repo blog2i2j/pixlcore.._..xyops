@@ -134,7 +134,7 @@ See our [Command Line Guide](cli.md) for controlling the xyOps service via comma
 
 When you manually install xyOps, it creates a cluster of one, and promotes itself to primary.  To add backup conductors, follow these instructions.
 
-First, for multi-conductor setups, **you must have an external storage backend**, such as NFS, S3, or S3-compatible (MinIO, etc.).  See [Storage Engines](https://github.com/jhuckaby/pixl-server-storage#engines) for details.
+First, for multi-conductor setups, **you must have an external storage backend**, such as S3, or S3-compatible (MinIO, etc.).  See [Storage Engines](https://github.com/jhuckaby/pixl-server-storage#engines) for details.
 
 Once you have external storage setup and working, stop the xyOps service, and edit the `/opt/xyops/conf/masters.json` file:
 
@@ -264,7 +264,7 @@ For a load balanced multi-conductor setup with Nginx w/TLS, please read this sec
 
 A few prerequisites for this setup:
 
-- For multi-conductor setups, **you must have an external storage backend**, such as NFS, S3, or S3-compatible (MinIO, etc.).  See [Storage Engines](https://github.com/jhuckaby/pixl-server-storage#engines) for details.
+- For multi-conductor setups, **you must have an external storage backend**, such as S3, or S3-compatible (MinIO, etc.).  See [Storage Engines](https://github.com/jhuckaby/pixl-server-storage#engines) for details.
 - You will need a custom domain configured and TLS certs created and ready to attach.
 - You have your xyOps configuration file customized and ready to go ([config.json](https://github.com/pixlcore/xyops/blob/main/sample_conf/config.json)) (see below).
 

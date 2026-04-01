@@ -362,7 +362,7 @@ For a load balanced multi-conductor setup with Nginx w/TLS and OAuth-Proxy for S
 
 A few prerequisites for this setup:
 
-- For multi-conductor setups, **you must have an external storage backend**, such as NFS, S3, or S3-compatible (MinIO, etc.).
+- For multi-conductor setups, **you must have an external storage backend**, such as S3, or S3-compatible (MinIO, etc.).
 - You will need a custom domain configured and TLS certs created and ready to attach.
 - You have your xyOps configuration files customized and ready to go ([config.json](https://github.com/pixlcore/xyops/blob/main/sample_conf/config.json) and [sso.json](https://github.com/pixlcore/xyops/blob/main/sample_conf/sso.json)) (see below for details).
 - And of course you should have a pretested SSO configuration for OAuth2-Proxy, so you are confident that piece works before integrating it here.
