@@ -1,5 +1,29 @@
 # xyOps Changelog
 
+## Version v1.0.43
+
+> March 31, 2026
+
+- [`fba0174`](https://github.com/pixlcore/xyops/commit/fba0174d5f7161edb9f1ba2e828d823fa21da1b3): Version 1.0.43
+	- Bump pixl-server to v1.0.50 for more detailed crash logs.
+	- Override lodash (sub-dependency of async) to v4.17.23 for vuln fix.
+- [`eb2a6f9`](https://github.com/pixlcore/xyops/commit/eb2a6f9efc06ad7185c31d9a98eb38e4533689a1): API Doc: Add docs for internal admin_upgrade_masters and admin_upgrade_workers APIs.
+- [`411c36f`](https://github.com/pixlcore/xyops/commit/411c36fbcc969bc4d46adb5a0aa4d942316e0e02): API Doc: Add new multi section, with internal master_register, get_master_releases, and master_command APIs documented.
+- [`b11ee0c`](https://github.com/pixlcore/xyops/commit/b11ee0cef98fb029c07779c391f2d6ae5a1a7ba0): API Doc: Clarify some admin API privs and rename satellite section.
+- [`54f1568`](https://github.com/pixlcore/xyops/commit/54f1568d855798c3f9f31752af084b5bebd4ae28): Hosting Doc: Added clarification on Docker configuration mount, as it needs to be unique per conductor.
+- [`04ec3b4`](https://github.com/pixlcore/xyops/commit/04ec3b4778759e36c6f385a9a5fe85c8e80de1fd): New Feature: Magic Link Form: Allow button text, icon, and custom faux response parameters.
+- [`a9828d2`](https://github.com/pixlcore/xyops/commit/a9828d25fc729a269c77129cd4c112148f16a93b): Docker Satellite Servers: Add default named volume mount for custom config dir (so containers survive upgrades).
+- [`686fe20`](https://github.com/pixlcore/xyops/commit/686fe20d4bb65e42f84e942f982caa347de78282): New Feature: Visually show conductors and satellite servers that have outdated versions.  Click to popup upgrade dialog.
+- [`fee2822`](https://github.com/pixlcore/xyops/commit/fee2822284b4e35fc409379b7c6a6f584a3eac61): CSS: Adjust scrollbar thumb color to better follow theme.
+- [`8f2b0a3`](https://github.com/pixlcore/xyops/commit/8f2b0a36847c632de7809ed5125caf966a1e572b): Bug Fix: Ensure workflow decision and split nodes always have access to outer workflow object for use in expressions.  Fixes #232.
+- [`45a3c1b`](https://github.com/pixlcore/xyops/commit/45a3c1be4073a4b7f76e24128f75f5608d501dc5): Satellite/Multi Release List APIs: Reduce requirement to any valid user or API key
+- [`ad9bc80`](https://github.com/pixlcore/xyops/commit/ad9bc803bb5e52b5dfc08c4d744ca9375b045bf9): Feature: Send xyops / xysat version information along with each job launch, in `job.versions` property.
+- [`4f5e4d9`](https://github.com/pixlcore/xyops/commit/4f5e4d9ebd9e561646833eaf2836ac2f3f646271): Behavior Change: For get_ APIs with v1 suffix, return HTTP 404 upon failure.  Fixes #231.
+- [`039bfb0`](https://github.com/pixlcore/xyops/commit/039bfb036cecaf11d6e71bfebd95eade39506c66): README: Remove quick-start docker run command, and instead direct people to the self-hosting guide.
+- [`699c9dd`](https://github.com/pixlcore/xyops/commit/699c9ddda605c88aa17ca6eac0d2348ab27a3feb): New Feature: Add "Diagnostic Report" button on System page, for generating report content for GitHub issues.
+- [`113abb7`](https://github.com/pixlcore/xyops/commit/113abb76098c1bfaa8b0fd3aacbb2df9c2133817): README and Hosting Docs: Clarify Docker setup instructions, use `XYOPS_masters` environment variable even for single-conductor setups.
+- [`c44a3d0`](https://github.com/pixlcore/xyops/commit/c44a3d0ca34bb58c42f10136b5fb450b70058ec9): Bug Fix: Auto-detect case where multiple hostnames resolve to same servers in masters.json, and shut down with loud error.
+
 ## Version v1.0.42
 
 > March 29, 2026
