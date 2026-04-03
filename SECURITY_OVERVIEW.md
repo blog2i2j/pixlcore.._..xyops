@@ -4,7 +4,7 @@
 
 This document explains how xyOps protects user accounts, secrets, API access, job execution, and server-to-server communication.
 
-xyOps is designed around a few core ideas around security:
+xyOps is designed around a few core ideas with regard to security:
 
 - Keep sensitive data out of the browser unless it is truly needed.
 - Encrypt secrets at rest and decrypt them only at the moment of use.
@@ -82,7 +82,7 @@ xyOps protects these in different ways depending on the asset. Some are hashed, 
 | API key | Salted SHA-256 hash only | Plaintext shown once at creation | Stored hash is based on the key plus the key ID. |
 | Secret Vault values | AES-256-GCM encrypted record | No, unless an admin explicitly decrypts a secret | Decrypted only in memory when needed. |
 | `secret_key` | Config override file with owner-only permissions | No | Also excluded from config APIs. |
-| Satellite auth token | Derived token based on server ID and secret key | Not to ordinary browser users | Used by xySat to authenticate to the conductor. |
+| Satellite auth token | Derived token based on server ID and secret key | No | Used by xySat to authenticate to the conductor. |
 
 
 ## Accounts and Sessions
@@ -185,6 +185,8 @@ API keys in xyOps are designed for services and automation, not human browser se
 - The plaintext key is generated once and shown once.
 - xyOps stores only a salted SHA-256 hash of the key, not the plaintext.
 - A masked version is stored for display convenience.
+- Each key can have an optional expiration date, after which it auto-disables.
+- You can set a max req/sec for each key, for throttling.
 
 The stored hash is:
 
@@ -324,7 +326,7 @@ xyOps includes an orchestrated secret-key rotation flow for administrators. The 
 - active jobs are aborted and allowed to drain
 - all encrypted secrets are re-encrypted with the new key
 - connected servers are re-issued fresh auth tokens
-- peer conductors are updated via config overrides
+- peer conductors are sent the new secret, fully encrypted using the old one
 
 This is much safer than manually changing a key and hoping all dependent systems catch up.
 
@@ -389,7 +391,7 @@ It is also possible to install and run xySat manually as a non-root user. That c
 - self-upgrade may fail unless the user owns the install directory and restart path
 - on POSIX systems, the process cannot switch child jobs to a different UID or GID unless the OS grants it that privilege
 
-On Windows, there is no native UID/GID model like POSIX, so process identity isolation must be handled differently.
+On Windows, there is no native UID/GID model like POSIX, so process identity isolation [must be handled differently](https://docs.xyops.io/#Docs/scaling/plugin-credentials).
 
 ### Job Execution
 
@@ -505,7 +507,7 @@ Each xySat instance maintains a persistent WebSocket to the conductor for:
 - monitoring samples
 - monitor plugin test results
 
-The default auth model uses an auth token derived from:
+The default auth model uses a SHA-256 auth token derived from:
 
 - `server_id + secret_key`
 
