@@ -1,5 +1,24 @@
 # xyOps Changelog
 
+## Version v1.0.44
+
+> April 3, 2026
+
+- [`bc2a0ea`](https://github.com/pixlcore/xyops/commit/bc2a0eae9a3e1de79b479d664703167d8cb7969a): Version 1.0.44
+- [`ea357ff`](https://github.com/pixlcore/xyops/commit/ea357ff9b81b27d63f2866fd014d4353416fba99): Meta: Add release.yml to automatically generate release notes and a GH release via GH actions.
+- [`e379951`](https://github.com/pixlcore/xyops/commit/e379951d4ffffe2864b200896f12d07cd0497164): Servers Doc: Fix tabs that snuck into docker-compose sample.
+- [`e07bea5`](https://github.com/pixlcore/xyops/commit/e07bea581dcf5ccb9d5c78835f6ca5d4ae043ae6): UI Tweak: Job Details: When user content contains markdown, increase its body font size slightly.
+- [`a97589d`](https://github.com/pixlcore/xyops/commit/a97589d37837fdfaeb3d33a8b02d6801be19889d): Bug Fix: Ensure web hook headers are an array at the API level, and add extra safeguards.  Fixes #238.
+- [`74d5778`](https://github.com/pixlcore/xyops/commit/74d57782f0aa5152b268562e8fe61b47725ee695): Servers Doc: Updated automated docker workers section with new xysat configuration setup.
+- [`3124d5c`](https://github.com/pixlcore/xyops/commit/3124d5c45fbd45af999d9e6bbea23e33e871c143): Security Overview Doc: Made a few minor corrections and wording adjustments.
+- [`f4ba4f7`](https://github.com/pixlcore/xyops/commit/f4ba4f701ffec0251d7d7ab97f431ee1e73c7345): Multi/Satelite Release List APIs: Add optional `verbose` parameter, to include full response from GitHub.
+- [`018e43b`](https://github.com/pixlcore/xyops/commit/018e43bff44e6ccc73f7d0494bd5d6806720cd8d): Add SECURITY_OVERVIEW.md document, to complement THREAT_MODEL.md.
+- [`e8cf67b`](https://github.com/pixlcore/xyops/commit/e8cf67b5b8cf51f098bb65dfcc552e4ccd9d378b): Bulk Deletes: When internal deletion jobs complete, refresh applicable search results pages in case users are waiting.  Fixes #236
+- [`4c0bf02`](https://github.com/pixlcore/xyops/commit/4c0bf024f2bb63fceeeaface8db477eb85e1ee82): Admin Upgrade Conductors API: Default single server pre-delay time to 5 seconds to allow for job to complete before starting upgrade.
+- [`0ff5230`](https://github.com/pixlcore/xyops/commit/0ff5230cbb9504eba0ad00a1ae82c64379917697): Workflows: Support event/job target expression in the multiplex controller, and do not abort the workflow if no servers match.  Fixes #233
+- [`68972b9`](https://github.com/pixlcore/xyops/commit/68972b9e0fc6edb28a1bd9e10b5bf9617a8e49f7): Docs: Remove NFS as a recommended storage configuration.
+- [`888d1bf`](https://github.com/pixlcore/xyops/commit/888d1bf1b69bd509a8eb0bbaf1fc56744b1524ff): System Diag Report: Small tweaks, trim load avg for display, add message for zero servers.
+
 ## Version v1.0.43
 
 > March 31, 2026
