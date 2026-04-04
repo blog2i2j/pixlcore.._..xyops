@@ -96,10 +96,10 @@ services:
     init: true
     restart: unless-stopped
     volumes:
-	  - xysat-conf-worker1:/etc/xysat
+      - xysat-conf-worker1:/etc/xysat
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-	  XYOPS_config_file: /etc/xysat/config.json
+      XYOPS_config_file: /etc/xysat/config.json
       XYOPS_setup: http://YOUR_XYOPS_SERVER:5522/api/app/satellite/config?t=YOUR_API_KEY_HERE
 
   worker2:
@@ -107,10 +107,10 @@ services:
     init: true
     restart: unless-stopped
     volumes:
-	  - xysat-conf-worker2:/etc/xysat
+      - xysat-conf-worker2:/etc/xysat
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-	  XYOPS_config_file: /etc/xysat/config.json
+      XYOPS_config_file: /etc/xysat/config.json
       XYOPS_setup: http://YOUR_XYOPS_SERVER:5522/api/app/satellite/config?t=YOUR_API_KEY_HERE
 
   worker3:
@@ -118,10 +118,10 @@ services:
     init: true
     restart: unless-stopped
     volumes:
-	  - xysat-conf-worker3:/etc/xysat
+      - xysat-conf-worker3:/etc/xysat
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-	  XYOPS_config_file: /etc/xysat/config.json
+      XYOPS_config_file: /etc/xysat/config.json
       XYOPS_setup: http://YOUR_XYOPS_SERVER:5522/api/app/satellite/config?t=YOUR_API_KEY_HERE
 ```
 
