@@ -13,7 +13,8 @@
 		"boot": "pixl-boot install --script bin/control.sh",
 		"unboot": "pixl-boot uninstall",
 		"test": "pixl-unit test/test.js",
-		"changelog": "node bin/changelog.js"
+		"changelog": "node bin/changelog.js",
+		"release": "bin/release.sh"
 	},
 	"repository": {
 		"type": "git",
