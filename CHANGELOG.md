@@ -1,5 +1,22 @@
 # xyOps Changelog
 
+## Version v1.0.45
+
+> April 6, 2026
+
+- [`041c000`](https://github.com/pixlcore/xyops/commit/041c0007ab7ba6a3f02bd600e6917b60d68f9a64): Version 1.0.45
+	- Bump pixl-server-storage to v4.1.0 for new Postgres storage engine.
+	- Add pg module for Postgres storage engine.
+	- Add ioredis module for Redis storage engine.
+	- Bump lodash (sub-dep of async) to v4.18.1 for another vuln fix.
+- [`715a640`](https://github.com/pixlcore/xyops/commit/715a640dbfe874709ef5cb15ac58b83f5c9b0c4e): Bug Fix: Custom sub-job labels were not visible on workflow job detail screen.  Fixes #242.
+- [`f946407`](https://github.com/pixlcore/xyops/commit/f946407a845a5c4c13c045acf9472af5f2ecc215): Sample Config: Add new default Postgres storage engine configuration.
+- [`6f863ba`](https://github.com/pixlcore/xyops/commit/6f863ba28b8a5914fa530ddb723fd27cfeb51ffa): Docs: Add new storage setup doc, and link it from existing docs.
+- [`46fc0be`](https://github.com/pixlcore/xyops/commit/46fc0be7afc1fdb1850570636857dd608c044e11): UI Strings: Tweak limit and action table captions to be more clear about category and universal inheritance.
+- [`7f962c8`](https://github.com/pixlcore/xyops/commit/7f962c8e5e111d61e51d3288fb4b48dd2e33fa99): UI Tweak: Fix "Copy to Clipboard" button in code viewer dialog.
+- [`dd937e6`](https://github.com/pixlcore/xyops/commit/dd937e6b036526440be92bbc0f96127402db44d3): Bug Fix: Upon job recovery after restart, unset job.remote flag in case job is dead (so it can abort after going stale).  Fixes #240.
+- [`58be32f`](https://github.com/pixlcore/xyops/commit/58be32f53d7ae29c08a354fe4610654155a293b0): Meta: Add local bin/release.sh script for automating releases.
+
 ## Version v1.0.44
 
 > April 3, 2026
