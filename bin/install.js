@@ -20,8 +20,8 @@ var gh_repo_url = 'http://github.com/pixlcore/xyops';
 var gh_releases_url = 'https://api.github.com/repos/pixlcore/xyops/releases';
 
 // Check if Node.js version is old
-if (process.version.match(/^v?(\d+)/) && (parseInt(RegExp.$1) < 16) && !process.env['XYOPS_OLD']) {
-	console.error("\nERROR: You are using an incompatible version of Node.js (" + process.version + ").  Please upgrade to v16 or later.  Instructions: https://nodejs.org/en/download/\n\nTo ignore this error and run unsafely, set an XYOPS_OLD environment variable.  Do this at your own risk.\n");
+if (process.version.match(/^v?(\d+)/) && (parseInt(RegExp.$1) < 20) && !process.env['XYOPS_OLD']) {
+	console.error("\nERROR: You are using an incompatible version of Node.js (" + process.version + ").  Please upgrade to v20 or later.  Instructions: https://nodejs.org/en/download/\n\nTo ignore this error and run unsafely, set an XYOPS_OLD environment variable.  Do this at your own risk.\n");
 	process.exit(1);
 }
 
