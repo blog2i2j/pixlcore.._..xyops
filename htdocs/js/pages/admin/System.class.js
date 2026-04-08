@@ -155,8 +155,14 @@ Page.System = class System extends Page.PageUtils {
 		this.renderWebSockets();
 		// this.addPageDescription();
 		
-		if (this.args.upgrade_server) this.do_upgrade_satellite([ this.args.upgrade_server ]);
-		if (this.args.upgrade_master) this.do_upgrade_masters([ this.args.upgrade_master ]);
+		if (this.args.upgrade_server) {
+			history.replaceState( null, '', '#System' );
+			this.do_upgrade_satellite([ this.args.upgrade_server ]);
+		}
+		if (this.args.upgrade_master) {
+			history.replaceState( null, '', '#System' );
+			this.do_upgrade_masters([ this.args.upgrade_master ]);
+		}
 	}
 	
 	renderStat(key, value) {
