@@ -1,5 +1,28 @@
 # xyOps Changelog
 
+## Version v1.0.46
+
+> April 10, 2026
+
+- [`9dd9b49`](https://github.com/pixlcore/xyops/commit/9dd9b49bbcfa5460d4a6a199fadd35c2d9792f24): Version 1.0.46
+	- Bump pixl-mail to v1.1.7 for upstream vuln fix in nodemailer.
+	- Bump pixl-request to v2.6.4 for upstream vuln fixes in basic-ftp (sub-dep of proxy-agent).
+- [`bbf7e8d`](https://github.com/pixlcore/xyops/commit/bbf7e8d7ac6639f8319efb2a7a2588931db1d48a): Initial Setup: HTTP Request Plugin: Add new idle_timeout and connect_timeout params, set all timeouts to number variants.
+- [`d6118f2`](https://github.com/pixlcore/xyops/commit/d6118f2e6bed6bbc039fea643b090ebb458c7d98): Sample Config: Add satellite.config.graphics_enabled set to false (for future xySat use).
+- [`8ac3ec2`](https://github.com/pixlcore/xyops/commit/8ac3ec2ec3ec42e2966f61ce95eac42239d2b103): Quiet Modifier: For ephemeral mode, if job finishes with a non-zero code (i.e. error) remove ephemeral flag.
+- [`f5ec5e2`](https://github.com/pixlcore/xyops/commit/f5ec5e2a535bc3843de235f7a38fa5f1da832787): Feature: Allow default max jobs per server to be set at the group level (individual servers can override).
+- [`a98c557`](https://github.com/pixlcore/xyops/commit/a98c557a977f919cdf04dd41d00a24f9c51acb2c): Feature: New job server selection algorithms: prefer_first_natural, and prefer_last_natural.
+- [`c0ba698`](https://github.com/pixlcore/xyops/commit/c0ba6982c7fcd3599bb76b9027ddabbe4cd2dd75): Feature: Optional job priority flag, to jump to the head of the queue.
+- [`b5a28ec`](https://github.com/pixlcore/xyops/commit/b5a28ecd389cddce607f183bc17bbba5f0bb24ef): Feature: Implement optional max jobs per server (server.maxJobs).
+- [`a3c82d0`](https://github.com/pixlcore/xyops/commit/a3c82d0f2e777335ea18aeac020c13aaf320d101): Bug Fix: Job Target Expressions: Ensure expression is re-evaluated when monitoring queued jobs.
+- [`5886190`](https://github.com/pixlcore/xyops/commit/5886190c011768afb32af02bb34e66a6b1a9931d): Server UI: Fix race condition when sitting on server page while server disconnects / reconnects.
+- [`d5d4609`](https://github.com/pixlcore/xyops/commit/d5d4609e531063bbcfa42c9d14f4aa2a220cd46f): Actions Doc: Added clarification about the "Suspend" action, which can only be used inside of a workflow.
+- [`4ca3e59`](https://github.com/pixlcore/xyops/commit/4ca3e59931163da8e49c1cb68443d5ea707acc22): UI Fix: When clicking on an out-of-date conductor version to upgrade it, prevent the refresh from popping up the upgrade dialog again.
+- [`676ca53`](https://github.com/pixlcore/xyops/commit/676ca53c7b8e18a8b967926057fd9f3132b28ace): Delete Job UI: When deleting a workflow sub-job, update the parent workflow so it shows a visual indication of the deleted job in the list.  Fixes #243
+- [`c08ce54`](https://github.com/pixlcore/xyops/commit/c08ce54f1b7f938440ab9573e8488a29159288cf): Log Viewer: Add Postgres and Redis logs to the menu.
+- [`a4eb1de`](https://github.com/pixlcore/xyops/commit/a4eb1deb8af1602384942d355e6fc4537e2a0768): Hot Keys: Add sanity check for event.key.  Fixes #245.
+- [`e93f14b`](https://github.com/pixlcore/xyops/commit/e93f14be618381a896889688602f7aa4b6ec6647): Installer Script: Change minimum supported Node.js version to v20.
+
 ## Version v1.0.45
 
 > April 6, 2026
