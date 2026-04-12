@@ -1509,6 +1509,22 @@ Page.PageUtils = class PageUtils extends Page.Base {
 			caption: '<span id="s_erl_duration_cap"></span>'
 		});
 		
+		// job weight
+		html += this.getFormRow({
+			id: 'd_erl_job_weight',
+			label: 'Server Job Weight:',
+			content: this.getFormText({
+				id: 'fe_erl_job_weight',
+				type: 'number',
+				spellcheck: 'false',
+				maxlength: 32,
+				min: 1,
+				value: limit.weight || 1
+			}),
+			caption: 'Optionally set a custom weight, which is used in the job server selection process.  For e.g. if a server has its max jobs set to `6`, and the job weight is `2`, then only 3 of these jobs may run concurrently on that server.'
+		});
+		
+		// file attribs
 		html += this.getFormRow({
 			id: 'd_erl_file_size',
 			label: 'Max File Size:',
@@ -1691,6 +1707,7 @@ Page.PageUtils = class PageUtils extends Page.Base {
 				
 				case 'job':
 					limit.amount = parseInt( $('#fe_erl_raw_amount').val() );
+					limit.weight = parseInt( $('#fe_erl_job_weight').val() );
 				break;
 				
 				case 'retry':
@@ -1719,7 +1736,7 @@ Page.PageUtils = class PageUtils extends Page.Base {
 		} ); // Dialog.confirm
 		
 		var change_limit_type = function(new_type) {
-			$('#d_erl_byte_amount, #d_erl_raw_amount, #d_erl_duration, #d_erl_file_size, #d_erl_file_types, #d_erl_tags, #d_erl_users, #d_erl_email, #d_erl_web_hook, #d_erl_web_hook_text, #d_erl_day_condition, #d_erl_day_amount, #d_erl_actions').hide();
+			$('#d_erl_byte_amount, #d_erl_raw_amount, #d_erl_duration, #d_erl_job_weight, #d_erl_file_size, #d_erl_file_types, #d_erl_tags, #d_erl_users, #d_erl_email, #d_erl_web_hook, #d_erl_web_hook_text, #d_erl_day_condition, #d_erl_day_amount, #d_erl_actions').hide();
 			
 			if (new_type.match(/^(time|mem|cpu|log)$/)) {
 				$('#d_erl_tags, #d_erl_users, #d_erl_email, #d_erl_web_hook, #d_erl_web_hook_text, #d_erl_actions').show();
@@ -1751,6 +1768,7 @@ Page.PageUtils = class PageUtils extends Page.Base {
 				case 'job':
 					$('#d_erl_raw_amount').show();
 					$('#s_erl_raw_amount_cap').html('Enter the maximum number to concurrent jobs to allow.');
+					$('#d_erl_job_weight').show();
 				break;
 				
 				case 'retry':

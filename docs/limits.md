@@ -108,11 +108,13 @@ Parameters:
 |------|------|----------|-------------|
 | `type` | String | Yes | Set to `job` for max concurrent jobs. |
 | `amount` | Number | Yes | Maximum number of concurrent active jobs for the event/workflow. |
+| `weight` | Number | No | Optional job weight, used in server targeting calculations. |
 
 Notes:
 
 - Scope for workflows matches the workflow's event; for ad-hoc workflow node jobs, the queue scope includes the node ID.
 - Works in tandem with `queue`: without a queue, jobs are aborted when the limit is reached.
+- The optional `weight` is used to determine if a server can run the job.  See [Server.maxJobs](data.md#server-maxjobs).
 
 Example:
 

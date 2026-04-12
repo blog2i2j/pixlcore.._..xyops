@@ -1454,7 +1454,7 @@ A boolean flag indicating if the server is enabled or not.  Enabled servers will
 
 ### Server.maxJobs
 
-An optional limit to place on the server for maximum concurrent running jobs.
+An optional limit to place on the server for maximum concurrent running jobs.  Note that jobs may have varying weights, specified in the [Max Concurrent Jobs](limits.md#max-concurrent-jobs) limit.
 
 ### Server.keywords
 
