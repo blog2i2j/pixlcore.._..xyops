@@ -114,7 +114,7 @@ Notes:
 
 - Scope for workflows matches the workflow's event; for ad-hoc workflow node jobs, the queue scope includes the node ID.
 - Works in tandem with `queue`: without a queue, jobs are aborted when the limit is reached.
-- The optional `weight` is used to determine if a server can run the job.  See [Server.maxJobs](data.md#server-maxjobs).
+- The optional `weight` is used to determine if a server can run the job.  See [Max Jobs Per Server](servers.md#max-jobs-per-server).
 
 Example:
 
