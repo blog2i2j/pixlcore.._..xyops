@@ -777,7 +777,7 @@ Page.System = class System extends Page.PageUtils {
 		var masters = sort_by( Object.values(app.masters), 'id' ).filter( function(host) { return !!host.online; } ).map( function(host) { 
 			return { 
 				id: host.id, 
-				title: host.id + ' (v' + host.version + ')', 
+				title: app.formatHostname(host.id) + ' (v' + host.version + ')', 
 				icon: host.master ? 'database' : 'database-outline' 
 			}; 
 		} );

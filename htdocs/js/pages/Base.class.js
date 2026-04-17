@@ -1998,7 +1998,7 @@ Page.Base = class Base extends Page {
 			} 
 		).map( 
 			function(server) {
-				var title = server.title || server.hostname;
+				var title = server.title || app.formatHostname(server.hostname);
 				if (inc_versions) title += ' (v' + server.info.satellite + ')';
 				return merge_objects( server, { title } );
 			}
