@@ -197,14 +197,16 @@ These complications are why it's important to first follow the initial [Setup](#
 
 ### Default User Privileges
 
-When users are first created via SSO, a default set of privileges is applied.  This is configured in the main `/opt/xyops/conf/config.json` file in the [default_user_privileges](config.md#default_user_privileges) property.  The default set is:
+When users are first created via SSO, a default set of privileges is applied (unless `replace_privileges` is set -- see below).  This is configured in the main `/opt/xyops/conf/config.json` file in the [default_user_privileges](config.md#default_user_privileges) property.  The default set is:
 
 ```json
 "default_user_privileges": {
 	"create_events": true,
 	"edit_events": true,
 	"run_jobs": true,
-	"tag_jobs": true
+	"tag_jobs": true,
+	"create_tickets": true,
+	"edit_tickets": true
 }
 ```
 
@@ -242,7 +244,7 @@ This would apply both roles to all users in the `pixlcore` IdP group.
 
 If your IdP specifies group roles delimited with a character other than comma (e.g. pipe), use the [SSO.group_role_separator](config.md#sso-group_role_separator) property to customize it.
 
-Now, by default, these roles and privileges are applied "additively" to user records.  Meaning, they will never *remove* a role or privilege.  This is so you can manually apply your own user roles and permissions using the xyOps Admin UI, and everything plays nice.  However, if you do not want this behavior, and instead want your IdP to be the single source of truth for all user roles and privileges, set `replace_roles` and/or `replace_privileges` to true.  Those will replace **all** the roles and/or privileges with whatever we get from the IdP group map.  This sync happens on every user login and session refresh, wiping out any local changes made in xyOps.
+Now, by default, these roles and privileges are applied "additively" to user records.  Meaning, they will never *remove* a role or privilege.  This is so you can manually apply your own user roles and permissions using the xyOps Admin UI, and everything plays nice.  However, if you do not want this behavior, and instead want your IdP to be the single source of truth for all user roles and privileges, set `replace_roles` and/or `replace_privileges` to true.  Those will replace **all** the roles and/or privileges with whatever we get from the IdP group map (this includes the default set for new users).  This sync happens on every user login and session refresh, wiping out any local changes made in xyOps.
 
 Note that not all identity providers send along groups by default.  In many cases you will have to manually enable it in your IdP admin portal.
 
