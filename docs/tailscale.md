@@ -183,9 +183,9 @@ Create an `.env` file in our host directory with the following contents:
 
 ```sh
 # Tailscale Configuration
-TS_AUTHKEY="YOUR_TAILSCALE_AUTHKEY" # Get auth key from https://tailscale.com/admin/authkeys. See: https://tailscale.com/kb/1085/auth-keys#generate-an-auth-key for instructions.
-TS_HOST="xyops.taild89302.ts.net" # Change to your own tailnet domain, keeping `xyops.` at the front.
-TZ="America/Los_Angeles" # Change to your own local timezone, or comment out if this is set in your shell already.
+TS_AUTHKEY="YOUR_TAILSCALE_AUTHKEY"
+TS_HOST="xyops.taild89302.ts.net"
+TZ="America/Los_Angeles"
 ```
 
 - Change the `TS_AUTHKEY` value to your own auth key you just created on your Tailscale console.
@@ -237,7 +237,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-    restart: always
+    restart: unless-stopped
 
   xyops01:
     image: ghcr.io/pixlcore/xyops:latest
@@ -278,7 +278,7 @@ You should not need to edit anything in the `compose.yaml` file, but here are a 
 Type this command to start everything up (the `-d` switch runs it in the background):
 
 ```sh
-docker compose -p xyops-tailscale up -d
+docker compose up -d
 ```
 
 And then visit your `TS_HOST` URL in your favorite browser.  Example:
