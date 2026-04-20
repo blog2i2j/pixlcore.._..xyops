@@ -78,13 +78,14 @@ Page.Users = class Users extends Page.PageUtils {
 				'<button class="link" onClick="$P().edit_user('+idx+')"><b>Edit</b></button>',
 				'<button class="link danger" onClick="$P().delete_user('+idx+')"><b>Delete</b></button>'
 			];
+			var privs = self.getComputedPrivileges(user);
 			
 			return [
 				'<b>' + self.getNiceUser(user, true) + '</b>',
 				'<span class="mono" data-private>' + user.username + '</span>',
 				'<a href="mailto:'+user.email+'" data-private>'+user.email+'</a>',
 				user.active ? '<span class="color_label green"><i class="mdi mdi-check-circle">&nbsp;</i>Active</span>' : '<span class="color_label red"><i class="mdi mdi-alert-circle">&nbsp;</i>Suspended</span>',
-				user.privileges.admin ? '<span class="color_label purple"><i class="mdi mdi-lock">&nbsp;</i>Admin</span>' : '<span class="color_label gray">Standard</span>',
+				privs.admin ? '<span class="color_label purple"><i class="mdi mdi-lock">&nbsp;</i>Admin</span>' : '<span class="color_label gray">Standard</span>',
 				'<span title="'+self.getNiceDateTimeText(user.created)+'">'+self.getNiceDate(user.created)+'</span>',
 				actions.join(' | ')
 			];
@@ -113,6 +114,19 @@ Page.Users = class Users extends Page.PageUtils {
 			.blur( function() { app.hideMessage(250); } )
 			.keydown( function() { app.hideMessage(); } );
 		}, 1 );
+	}
+	
+	getComputedPrivileges(user) {
+		// combine user privs with all assigned roles
+		var self = this;
+		var privs = copy_object( user.privileges || {} );
+		
+		(user.roles || []).forEach( function(role_id) {
+			var role = find_object( app.roles, { id: role_id } );
+			if (role && role.enabled && role.privileges) merge_hash_into( privs, role.privileges );
+		} );
+		
+		return privs;
 	}
 	
 	do_user_search(text) {
