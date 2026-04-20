@@ -212,7 +212,9 @@ Page.ServerUtils = class ServerUtils extends Page.PageUtils {
 		html += '</div>'; // wrapper
 		
 		var buttons_html = "";
-		// buttons_html += '<div class="button" onClick="$P().copy_unit_results('+idx+')">Copy to Clipboard</div>';
+		if (app.isAdmin() && this.ID.match(/^(Servers|Groups)$/)) {
+			buttons_html += `<div class="button danger" data-pid="${pid}" data-server="${proc.server || ''}" onClick="$P().killCurrentProcess(this)"><i class="mdi mdi-target">&nbsp;</i>Kill Process...</div>`;
+		}
 		buttons_html += '<div class="button primary" onClick="Dialog.confirm_click(true)"><i class="mdi mdi-close-circle-outline">&nbsp;</i>Close</div>';
 		
 		Dialog.showSimpleDialog('Process Details', html, buttons_html);
@@ -222,6 +224,103 @@ Page.ServerUtils = class ServerUtils extends Page.PageUtils {
 		Dialog.confirm_callback = function(result) { 
 			if (result) Dialog.hide(); 
 		};
+	}
+	
+	killCurrentProcess(elem) {
+		// popup menu to select signal to send to process, via targeted temp job in new window
+		// with auto-self-deleting ephemeral event and the built-in shellplug
+		var self = this;
+		var $elem = $(elem);
+		var pid = $elem.data('pid');
+		var server_id = $elem.data('server') || this.server.id;
+		var server = app.servers[server_id];
+		var cat_def = find_object( app.categories, { id: 'general' } ) || app.categories[0];
+		
+		if (!server) return app.doError("Server not found in active list: " + server_id);
+		if (!String(pid).match(/^\d+$/)) return app.doError("Malformed PID: " + pid); // sanity
+		if (!cat_def) return app.doError("No categories found.  Please add a category before killing processes.");
+		if (!find_object(app.plugins, { id: 'shellplug' })) return app.doError("The built-in Shell Plugin was not found.");
+		
+		SingleSelect.popupQuickMenu({
+			elem: elem,
+			title: '<span style="color:var(--red)">Kill Process</span>',
+			items: [
+				{ "id": "TERM", "title": "Graceful Stop (SIGTERM)", "icon": "stop-circle-outline" },
+				{ "id": "INT",  "title": "Interrupt (SIGINT)",      "icon": "hand-back-right-outline" },
+				{ "id": "HUP",  "title": "Reload Config (SIGHUP)",  "icon": "reload" },
+				{ "id": "USR1", "title": "User Signal 1 (SIGUSR1)", "icon": "flask-outline" },
+				{ "id": "USR2", "title": "User Signal 2 (SIGUSR2)", "icon": "flask" },
+				{ "id": "KILL", "title": "Force Kill (SIGKILL)",    "icon": "skull" }
+			],
+			value: '',
+			nocheck: true,
+			
+			callback: function(sig) {
+				if (!sig) return;
+				
+				var script = '';
+				if (server.info.platform == 'win32') {
+					script = `#!powershell\nWrite-Output "Killing process ${pid} with ${sig}..."\nStop-Process -Id ${pid}`;
+					if (sig == 'KILL') script += ` -Force`;
+					script += `\nWrite-Output "Done."\n`;
+				}
+				else {
+					script = `#!/bin/sh\nset -e\necho "Killing process ${pid} with ${sig}..."\nkill -${sig} ${pid}\necho "Done."\n`;
+				}
+				
+				var event = {
+					enabled: true,
+					title: "Kill Process",
+					icon: 'target',
+					category: cat_def.id,
+					targets: [ server_id ],
+					algo: 'random',
+					plugin: 'shellplug',
+					params: {
+						script: script
+					},
+					triggers: [
+						{ type: "manual", enabled: true }
+					],
+					actions: [
+						{ type: "delete", enabled: true, condition: "complete" }
+					],
+					limits: [],
+					fields: [],
+					tags: [],
+					notes: ""
+				};
+				
+				var job = deep_copy_object(event);
+				job.label = "Kill Process";
+				
+				// pre-open new window/tab for job details
+				var win = window.open('', '_blank');
+				
+				app.api.post( 'app/create_event', event, function(resp) {
+					// now run the job
+					if (!self.active) return; // sanity
+					job.event = resp.event.id;
+					
+					app.api.post( 'app/run_event', job, function(resp) {
+						// Dialog.hideProgress();
+						if (!self.active) return; // sanity
+						
+						// jump immediately to live details page in new window
+						win.location.href = '#Job?id=' + resp.id;
+					}, 
+					function(err) {
+						// capture error so we can close the window we just opened
+						win.close();
+						app.doError("API Error: " + err.description);
+					}); // run_event error
+				},
+				function(err) {
+					win.close();
+					app.doError("API Error: " + err.description);
+				} ); // create_event error
+			} // callback
+		}); // popupQuickMenu
 	}
 	
 	getMemDetails(server) {
