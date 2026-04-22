@@ -34,6 +34,10 @@
 		display: none;
 	}
 	
+	/* 'Server', 'IP Address', 'Groups', '# CPUs', 'RAM', 'Arch', 'OS', 'xySat', 'Uptime', '# Jobs', '# Alerts' */
+	.data_grid.server_grid { grid-template-columns: auto auto auto auto auto auto auto auto 0px auto auto !important; }
+	.data_grid.server_grid > ul > div:nth-child(9) { visibility: hidden; }
+	
 	/* 'Event Title', 'Category', 'Tags', 'Plugin', 'Target', 'Trigger', 'Status', 'Actions' */
 	.data_grid.event_grid { grid-template-columns: auto auto auto 0px 0px auto auto auto !important; }
 	.data_grid.event_grid > ul > div:nth-child(4) { visibility: hidden; }
